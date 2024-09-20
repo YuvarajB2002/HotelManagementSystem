@@ -1,0 +1,61 @@
+<!-- Staff Dashboard Page -->
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Home Link -->
+      <a class="navbar-brand" href="#">Staff Dashboard</a>
+  
+      <!-- Navbar Toggler for smaller screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+  
+        <!-- Logout Button with Staff Name on the Right -->
+        <ul class="navbar-nav">
+          <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class="nav-link logout" (click)="onLogout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Background and Overlay -->
+  <div class="staff-dashboard">
+    <div class="overlay"></div>
+  
+    <!-- Staff Page Content -->
+    <div class="container">
+      <div class="row text-center">
+        <!-- Manage Rooms Button -->
+        <div class="col-md-6 mb-3">
+          <button class="btn btn-primary btn-lg w-100" (click)="onManageRooms()">Manage Rooms</button>
+        </div>
+  
+        <!-- Reservation Button -->
+        <div class="col-md-6 mb-3">
+          <button class="btn btn-secondary btn-lg w-100" (click)="onManageReservations()">Reservation</button>
+        </div>
+  
+        <!-- Payment Button -->
+        <div class="col-md-6 mb-3">
+          <button class="btn btn-success btn-lg w-100" (click)="onManagePayments()">Payment</button>
+        </div>
+  
+        <!-- Guest Manage Button -->
+        <div class="col-md-6 mb-3">
+          <button class="btn btn-info btn-lg w-100" (click)="onManageGuests()">Guest Management</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,51 @@
+<div class="container my-5">
+    <h2 class="text-center mb-4">Pending Housekeeping Tasks</h2>
+  
+    <!-- Back Button -->
+    <div class="text-center mb-3">
+      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+    </div>
+  
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <!-- Task List -->
+    <div *ngIf="!loading && pendingTasks.length > 0" class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Task ID</th>
+            <th>Room ID</th>
+            <th>Assigned Staff ID</th>
+            <th>Task Description</th>
+            <th>Task Date</th>
+            <th>Task Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of pendingTasks">
+            <td>{{ task.taskId }}</td>
+            <td>{{ task.roomId }}</td>
+            <td>{{ task.assignedStaffId }}</td>
+            <td>{{ task.taskDescription }}</td>
+            <td>{{ task.taskDate | date: 'short' }}</td>
+            <td>{{ task.taskStatus }}</td>
+            <td>
+              <button class="btn btn-success" (click)="completeTask(task.taskId)">Complete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- No Pending Tasks -->
+    <div *ngIf="!loading && pendingTasks.length === 0" class="alert alert-warning text-center">
+      No pending tasks found.
+    </div>
+  </div>
+  

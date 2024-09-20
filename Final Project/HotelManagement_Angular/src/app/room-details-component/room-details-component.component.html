@@ -1,0 +1,83 @@
+<!-- Room Details Page -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Home Link -->
+    <a *ngIf="isAdmin" class="navbar-brand" href="#">Admin Dashboard</a>
+    <a *ngIf="isStaff" class="navbar-brand" href="#">Staff Dashboard</a>
+    <!-- Navbar Toggler for smaller screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+
+      <!-- Logout Button on the Right -->
+      <ul class="navbar-nav">
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <a class="nav-link logout" (click)="onLogout()">LogOut</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="background-image">
+  <div class="overlay">
+    <div class="container my-5">
+      <!-- Room Header -->
+      <div class="row mb-4">
+        <div class="col text-center">
+          <h1 class="display-4 fw-bold text-white">{{ room?.roomType }} - Room {{ room?.roomNumber }}</h1>
+          <p class="lead text-light">Price: {{ room?.price }} / night</p>
+        </div>
+      </div>
+
+      <!-- Room Image -->
+      <div class="row mb-4">
+        <div class="col text-center">
+          <img [src]="room?.roomImage || 'assets/default-room.jpg'" class="img-fluid rounded shadow-lg" alt="Room Image" style="max-height: 400px; object-fit: cover;">
+        </div>
+      </div>
+
+      <!-- Room Description and Details -->
+      <div class="row mb-4">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <div class="card shadow-lg border-light room-description-card">
+            <div class="card-header bg-secondary text-white border-0 rounded-top">
+              <h5 class="card-title mb-0">Description</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ room?.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-lg border-light room-details-card">
+            <div class="card-header bg-secondary text-white border-0 rounded-top">
+              <h5 class="card-title mb-0">Room Details</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled mb-0">
+                <li><strong>Capacity: </strong> {{ room?.capacity }} people</li>
+                <li><strong>Status: </strong> <span class="badge" [ngClass]="room?.status === 'Available' ? 'bg-success' : 'bg-danger'">{{ room?.status }}</span></li>
+                <li><strong>AC: </strong> <span class="badge" [ngClass]="room?.ac ? 'bg-light text-dark' : 'bg-dark text-light'">{{ room?.ac ? 'AC' : 'Non-AC' }}</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <div class="text-center mt-4">
+        <button (click)="goBack()" class="btn btn-primary btn-lg">Back to Room List</button>
+       </div> 
+    </div>
+  </div>
+</div>

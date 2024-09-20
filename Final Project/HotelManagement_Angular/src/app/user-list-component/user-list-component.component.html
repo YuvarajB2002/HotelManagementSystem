@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Home Link -->
+      <a class="navbar-brand" href="#">Admin Dashboard</a>
+  
+      <!-- Navbar Toggler for smaller screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+  
+        <!-- Logout Button on the Right -->
+        <ul class="navbar-nav">
+          <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class="nav-link logout" (click)="onLogout()">LogOut</a>
+          </li>
+        </ul>
+  
+      </div>
+    </div>
+  </nav>
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Staff List</h2>
+
+    <!-- Add Staff Button -->
+    <div class="mb-4 text-end">
+        <button class="btn btn-success" routerLink="/add-user">Add New Staff</button>
+    </div>
+
+    <!-- Staff Table -->
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of data">
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm me-2" (click)="editUser(user.userId)">Edit</button>
+                    <button class="btn btn-danger btn-sm ml-3" (click)="deleteUser(user.userId)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- No Users Message -->
+    <div *ngIf="data.length === 0" class="text-center mt-4">
+        <p>No users available. Please add a new user.</p>
+    </div>
+
+    <!-- Back Button -->
+    <div class="mt-4">
+        <button class="btn btn-secondary w-100" routerLink="/admin">Back</button>
+    </div>
+</div>

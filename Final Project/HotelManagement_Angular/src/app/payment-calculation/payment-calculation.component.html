@@ -1,0 +1,65 @@
+<div class="container my-5">
+    <h2 class="text-center mb-4 fw-bold text-primary">Payment Calculation</h2>
+  
+    <div class="card shadow-lg p-4">
+      <div class="card-body">
+        <form #paymentForm="ngForm" (ngSubmit)="submitPayment()" novalidate>
+          <!-- Check-Out Date and Total Amount Fields -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="totalAmount" class="form-label">Total Amount</label>
+              <input 
+                type="text" 
+                id="totalAmount" 
+                class="form-control" 
+                [(ngModel)]="payment.paymentAmount" 
+                name="totalAmount" 
+                readonly>
+            </div>
+          </div>
+  
+          <!-- Payment Method Dropdown -->
+          <div class="mb-3">
+            <label for="paymentMethod" class="form-label">Payment Method</label>
+            <select 
+              id="paymentMethod" 
+              class="form-control" 
+              [(ngModel)]="payment.paymentMethod" 
+              name="paymentMethod" 
+              required>
+              <option value="" disabled>Select Payment Method</option>
+              <option value="Cash">Cash</option>
+              <option value="Online">Online</option>
+            </select>
+          </div>
+  
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-lg w-100 mt-3" [disabled]="paymentForm.invalid">Submit Payment</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Display Payment Bill After Submission -->
+    <div *ngIf="showBill" class="card shadow-lg p-4 mt-5" id="billCard">
+        <div class="text-center mb-4">
+            <img src="/public/payment.png" alt="Payment Successful" width="150" height="150">
+          </div>
+      <h4 class="text-center mb-4">Luxury Hotel</h4>
+      <h4 class="text-center mb-4">Payment Bill</h4>
+      <p><strong>Guest Name:</strong> {{ guest.firstName }}</p>
+      <p><strong>Guest Email:</strong> {{ guest.email }}</p>
+      <p><strong>Check-In Date:</strong> {{ reservation.checkInDate | date }}</p>
+      <p><strong>Check-Out Date:</strong> {{ checkOutDate | date }}</p>
+      <p><strong>Total Amount:</strong> {{ payment.paymentAmount }}</p>
+      <p><strong>Payment Method:</strong> {{ payment.paymentMethod }}</p>
+      
+      <!-- Buttons to Download PDF and DOC -->
+      <div class="text-center">
+        <button (click)="downloadPDF()" class="btn btn-primary me-2">Download PDF</button>
+        <button (click)="downloadDOC()" class="btn btn-secondary">Download DOC</button>
+      </div>
+    </div>
+
+    <button routerLink="/reservation-list" class="btn btn-primary btn-lg w-100 mt-3">Back</button>
+  </div>
+  

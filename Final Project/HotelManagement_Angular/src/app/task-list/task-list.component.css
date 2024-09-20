@@ -1,0 +1,93 @@
+/* Navbar */
+.navbar-brand {
+    font-size: 1.5rem;
+
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    color: #f8f9fa;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #adb5bd;
+}
+
+.navbar-toggler-icon {
+    color: #f8f9fa;
+}
+
+/* Dashboard Background */
+.housekeeping-dashboard {
+    background: url('/public/admin.jfif') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 60px; /* To prevent overlap with navbar */
+}
+
+.housekeeping-dashboard .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay on background */
+}
+
+/* Table Styling */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #dee2e6;
+    margin-top: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.table th, .table td {
+    text-align: center;
+    padding: 10px;
+}
+
+.table td {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table tbody tr td:nth-child(1) {
+    font-weight: bold;
+}
+
+/* No Data Message */
+.text-center {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Housekeeping Container */
+.container {
+    position: relative;
+    z-index: 1; /* Keeps the content above the overlay */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Center the header */
+h2.text-center {
+    color: #343a40;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}

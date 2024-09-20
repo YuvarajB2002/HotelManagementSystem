@@ -1,0 +1,85 @@
+/* Background and Overlay */
+.staff-dashboard {
+    position: relative;
+    min-height: 100vh;
+    background: url('/public/admin.jfif') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for better readability */
+    z-index: 1;
+}
+
+/* Ensure all content is on top of the overlay */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Buttons styling */
+.btn {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+}
+
+/* Colors for different buttons */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+/* Navbar adjustments */
+.navbar-dark .navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar-dark .nav-link {
+    font-size: 1.1rem;
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 768px) {
+    .btn {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    h1.display-3 {
+        font-size: 2rem;
+    }
+
+    p.lead {
+        font-size: 1.2rem;
+    }
+}

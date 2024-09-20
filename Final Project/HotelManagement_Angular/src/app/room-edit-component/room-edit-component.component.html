@@ -1,0 +1,139 @@
+<div class="container my-5">
+    <h2 class="text-center mb-4">Edit Room Details</h2>
+  
+    <!-- Success Message -->
+    <div *ngIf="isUpdated" class="alert alert-success text-center" role="alert">
+      Room details updated successfully!
+    </div>
+  
+    <!-- Form for Editing Room Details -->
+    <form (ngSubmit)="onSubmit()" #editRoomForm="ngForm" novalidate *ngIf="!isUpdated">
+      
+      <!-- Room Type -->
+      <div class="mb-3">
+        <label for="roomType" class="form-label">Room Type</label>
+        <input
+          type="text"
+          id="roomType"
+          class="form-control"
+          [(ngModel)]="room.roomType"
+          name="roomType"
+          required
+          minlength="3"
+          #roomType="ngModel"
+          [ngClass]="{'is-invalid': roomType.invalid && (roomType.dirty || roomType.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="roomType.invalid && (roomType.dirty || roomType.touched)">
+          <div *ngIf="roomType.errors?.['required']">Room Type is required.</div>
+          <div *ngIf="roomType.errors?.['minlength']">Room Type must be at least 3 characters long.</div>
+        </div>
+      </div>
+  
+      <!-- Room Number -->
+      <div class="mb-3">
+        <label for="roomNumber" class="form-label">Room Number</label>
+        <input
+          type="text"
+          id="roomNumber"
+          class="form-control"
+          [(ngModel)]="room.roomNumber"
+          name="roomNumber"
+          required
+          #roomNumber="ngModel"
+          [ngClass]="{'is-invalid': roomNumber.invalid && (roomNumber.dirty || roomNumber.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="roomNumber.invalid && (roomNumber.dirty || roomNumber.touched)">
+          <div *ngIf="roomNumber.errors?.['required']">Room Number is required.</div>
+        </div>
+      </div>
+  
+      <!-- Price -->
+      <div class="mb-3">
+        <label for="price" class="form-label">Price per Night</label>
+        <input
+          type="number"
+          id="price"
+          class="form-control"
+          [(ngModel)]="room.price"
+          name="price"
+          required
+          min="1"
+          #price="ngModel"
+          [ngClass]="{'is-invalid': price.invalid && (price.dirty || price.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="price.invalid && (price.dirty || price.touched)">
+          <div *ngIf="price.errors?.['required']">Price is required.</div>
+          <div *ngIf="price.errors?.['min']">Price must be at least 1.</div>
+        </div>
+      </div>
+  
+      <!-- Capacity -->
+      <div class="mb-3">
+        <label for="capacity" class="form-label">Capacity</label>
+        <input
+          type="number"
+          id="capacity"
+          class="form-control"
+          [(ngModel)]="room.capacity"
+          name="capacity"
+          required
+          min="1"
+          #capacity="ngModel"
+          [ngClass]="{'is-invalid': capacity.invalid && (capacity.dirty || capacity.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)">
+          <div *ngIf="capacity.errors?.['required']">Capacity is required.</div>
+          <div *ngIf="capacity.errors?.['min']">Capacity must be at least 1.</div>
+        </div>
+      </div>
+  
+      <!-- AC -->
+      <div class="mb-3">
+        <label for="ac" class="form-label">AC Available</label>
+        <select
+          id="ac"
+          class="form-control"
+          [(ngModel)]="room.ac"
+          name="ac"
+          required
+          #ac="ngModel"
+          [ngClass]="{'is-invalid': ac.invalid && (ac.dirty || ac.touched)}"
+        >
+          <option value="" disabled>Select AC status</option>
+          <option [value]="true">Yes</option>
+          <option [value]="false">No</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="ac.invalid && (ac.dirty || ac.touched)">
+          AC status is required.
+        </div>
+      </div>
+  
+      <!-- Room Status -->
+      <div class="mb-3">
+        <label for="status" class="form-label">Room Status</label>
+        <select
+          id="status"
+          class="form-control"
+          [(ngModel)]="room.status"
+          name="status"
+          required
+          #status="ngModel"
+          [ngClass]="{'is-invalid': status.invalid && (status.dirty || status.touched)}"
+        >
+          <option value="" disabled>Select room status</option>
+          <option value="Available">Available</option>
+          <option value="Not Available">Not Available</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="status.invalid && (status.dirty || status.touched)">
+          Room status is required.
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="editRoomForm.invalid">Update Room</button>
+    </form>
+  
+    <!-- Back Button -->
+    <button routerLink="/roomlist" class="btn btn-secondary w-100 mt-3">Back</button>
+  </div>
+  

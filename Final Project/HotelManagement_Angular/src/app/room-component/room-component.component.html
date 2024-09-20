@@ -1,0 +1,110 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a *ngIf="isAdmin" class="navbar-brand" href="#">Admin Dashboard</a>
+    <a *ngIf="isStaff" class="navbar-brand" href="#">Staff Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+       
+
+
+        <li *ngIf="isStaff" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter Rooms
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" (click)="filterRooms('Available')">Available Rooms</a></li>
+            <li><a class="dropdown-item" (click)="filterRooms('Not Available')">Non-Available Rooms</a></li>
+          </ul>
+        </li>
+
+       
+          <li *ngIf="isAdmin" class="nav-item">
+            <a class="nav-link" routerLink="/admin">Back</a>
+          </li>
+          <li *ngIf="isStaff" class="nav-item">
+            <a class="nav-link" routerLink="/staff">Back</a>
+          </li>
+
+          <li *ngIf="isAdmin" class="nav-item">
+            <a class="nav-link" routerLink="/add-room">Add Room</a>
+          </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Background Video -->
+<div class="video-container">
+  <video autoplay muted loop id="backgroundVideo">
+    <source src="/public/Room.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+</div>
+
+
+<!-- Content Section -->
+<div class="container my-5 content">
+  
+  <!-- Header Section -->
+  <div *ngIf="isStaff"  class="row mb-4 text-center">
+    <div class="col">
+      <h1 id="topEle" class="display-4 fw-bold text-white">Explore Our Rooms</h1>
+      <p class="lead text-white">Discover the perfect stay, tailored for your comfort and luxury.</p>
+      <hr class="w-50 mx-auto text-white">
+    </div>
+  </div>
+
+  <!-- Rooms Section -->
+  <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+    <div *ngFor="let room of filteredRooms" class="col-lg-4 col-md-6 mb-4">
+      <div class="card shadow-lg h-100">
+        <!-- Room Image -->
+        <div class="position-relative">
+          <img [src]="room.roomImage || 'assets/default-room.jpg'" class="card-img-top rounded-top" alt="Room Image" style="height: 250px; object-fit: cover;">
+        </div>
+
+        <!-- Room Information -->
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-primary">{{ room.roomType }} - Room {{ room.roomNumber }}</h5>
+          <p class="card-text text-muted">{{ room.description || 'No description available.' }}</p>
+
+          <div class="mb-3">
+            <span class="badge bg-info me-2 mr-2">Price: ${{ room.price }} / night</span>
+            <span class="badge bg-secondary me-2 mr-2">Capacity: {{ room.capacity }} people</span>
+            <span class="badge" [ngClass]="room?.ac ? 'bg-light text-dark' : 'bg-dark text-light'">{{ room?.ac ? 'AC' : 'Non-AC' }}</span>
+          </div>
+
+          <!-- Room Status Badge just above the buttons -->
+          <div class="text-center mb-3">
+            <span class="badge" [ngClass]="room.status === 'Available' ? 'bg-success' : 'bg-danger'">
+              {{ room.status }}
+            </span>
+          </div>
+
+          <div class="text-center">
+            <button *ngIf="isStaff" (click)="bookRoom(room.roomId)" class="btn btn-outline-primary w-100" [disabled]="room.status !== 'Available'">
+              {{ room.status === 'Available' ? 'Book Now' : 'Not Available' }}
+            </button>
+            <button (click)="roomDetails(room.roomId)" class="btn btn-primary w-100 mt-2">View Details</button>
+          </div>
+          <div *ngIf="isAdmin" class="text-center mt-3">
+            <button (click)="editRoom(room.roomId)" class="btn btn-warning w-45 me-2">Edit</button>
+            <button (click)="deleteRoom(room.roomId)" class="btn btn-danger w-45 ml-3">Delete</button>
+            <button (click)="maintenanceRoom(room.roomId)" class="btn btn-secondary w-45 ml-3 mt-3">Maintenance Request</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<!-- <a href="#topEle" class="back-to-top btn btn-primary">Back to Top</a> -->

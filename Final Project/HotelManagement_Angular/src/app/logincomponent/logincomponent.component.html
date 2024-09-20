@@ -1,0 +1,44 @@
+<div class="login-container">
+  <div class="overlay"></div>
+  <div class="login-card">
+    <h2>Login</h2>
+    <form (ngSubmit)="onLogin()">
+      
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          class="form-control"
+          placeholder="Enter your email id"
+          [(ngModel)]="user.email"
+          name="email"
+          required
+        />
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Enter your password"
+          [(ngModel)]="user.passwordHash"
+          name="password"
+          required
+        />
+      </div>
+
+      <!-- Role Dropdown Field -->
+      
+
+      <!-- Login Button -->
+      <button type="submit" class="btn login-btn">Login</button>
+
+      <button class="btn btn-primary home-btn" routerLink="/">Back to Home</button>
+    </form>
+  </div>
+</div>

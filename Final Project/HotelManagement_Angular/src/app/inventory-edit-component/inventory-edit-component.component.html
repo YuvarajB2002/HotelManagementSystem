@@ -1,0 +1,83 @@
+<div class="container my-5">
+    <h2 class="text-center mb-4">Edit Inventory Item</h2>
+  
+    <form (ngSubmit)="onSubmit()" #editForm="ngForm" novalidate>
+      <!-- Item Name -->
+      <div class="mb-3">
+        <label for="itemName" class="form-label">Item Name</label>
+        <input
+          type="text"
+          id="itemName"
+          class="form-control"
+          [(ngModel)]="inventoryItem.itemName"
+          name="itemName"
+          required
+          #itemName="ngModel"
+        />
+      </div>
+  
+      <!-- Quantity -->
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input
+          type="number"
+          id="quantity"
+          class="form-control"
+          [(ngModel)]="inventoryItem.quantity"
+          name="quantity"
+          required
+          min="1"
+          #quantity="ngModel"
+        />
+      </div>
+  
+      <!-- Reorder Level -->
+      <div class="mb-3">
+        <label for="reorderLevel" class="form-label">Reorder Level</label>
+        <input
+          type="number"
+          id="reorderLevel"
+          class="form-control"
+          [(ngModel)]="inventoryItem.reorderLevel"
+          name="reorderLevel"
+          required
+          min="1"
+          #reorderLevel="ngModel"
+        />
+      </div>
+  
+      <!-- Last Restocked Date -->
+      <div class="mb-3">
+        <label for="lastRestockedDate" class="form-label">Last Restocked Date</label>
+        <input
+          type="date"
+          id="lastRestockedDate"
+          class="form-control"
+          [(ngModel)]="inventoryItem.lastRestockedDate"
+          name="lastRestockedDate"
+          required
+          #lastRestockedDate="ngModel"
+        />
+      </div>
+  
+      <!-- Supplier -->
+      <div class="mb-3">
+        <label for="supplier" class="form-label">Supplier</label>
+        <input
+          type="text"
+          id="supplier"
+          class="form-control"
+          [(ngModel)]="inventoryItem.supplier"
+          name="supplier"
+          required
+          minlength="2"
+          #supplier="ngModel"
+        />
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-success w-100" [disabled]="editForm.invalid">Save Changes</button>
+    </form>
+    <button class="btn btn-primary w-100 mt-3" (click)="goBack()">Back</button>
+  </div>
+  

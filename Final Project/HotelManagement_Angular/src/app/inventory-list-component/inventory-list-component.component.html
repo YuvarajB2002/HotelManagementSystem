@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Home Link -->
+    <a class="navbar-brand" href="#">Admin Dashboard</a>
+
+    <!-- Navbar Toggler for smaller screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+
+      <!-- Logout Button on the Right -->
+      <ul class="navbar-nav">
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <a class="nav-link logout" (click)="onLogout()">LogOut</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Inventory List</h2>
+  
+    <!-- Back and Add Item Buttons -->
+    <div class="d-flex justify-content-between mb-3">
+      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+      <button class="btn btn-primary" (click)="navigateToAddItem()">Add Item</button>
+    </div>
+  
+    <!-- Inventory Table -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Reorder Level</th>
+          <th>Last Restocked Date</th>
+          <th>Supplier</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{ item.itemName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.reorderLevel }}</td>
+          <td>{{ item.lastRestockedDate | date: 'shortDate' }}</td>
+          <td>{{ item.supplier }}</td>
+          <td><button class="btn btn-info mr-3" (click)="editItem(item.inventoryId)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteItem(item.inventoryId)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

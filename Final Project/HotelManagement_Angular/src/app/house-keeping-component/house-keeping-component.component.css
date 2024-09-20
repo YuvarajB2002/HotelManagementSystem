@@ -1,0 +1,48 @@
+/* Background and Overlay */
+.housekeeping-dashboard {
+    position: relative;
+    min-height: 100vh;
+    background: url('/public/admin.jfif') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    z-index: 1;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Buttons styling */
+  .btn {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+  }
+  
+  .btn-block {
+    width: 100%;
+  }
+  
+  .btn:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Additional Button Colors */
+  .btn-primary { background-color: #007bff; border-color: #007bff; }
+  .btn-secondary { background-color: #6c757d; border-color: #6c757d; }
+  .btn-success { background-color: #28a745; border-color: #28a745; }
+  

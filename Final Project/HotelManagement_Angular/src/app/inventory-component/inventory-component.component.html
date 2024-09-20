@@ -1,0 +1,113 @@
+<div class="container my-5">
+    <h2 class="text-center mb-4">Manage Inventory</h2>
+  
+    <form (ngSubmit)="onSubmit()" #inventoryForm="ngForm" novalidate>
+      <!-- Item Name -->
+      <div class="mb-3">
+        <label for="itemName" class="form-label">Item Name</label>
+        <input
+          type="text"
+          id="itemName"
+          class="form-control"
+          [(ngModel)]="inventory.itemName"
+          name="itemName"
+          required
+          minlength="2"
+          #itemName="ngModel"
+          [ngClass]="{'is-invalid': itemName.invalid && (itemName.dirty || itemName.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="itemName.invalid && (itemName.dirty || itemName.touched)">
+          <div *ngIf="itemName.errors?.['required']">Item Name is required.</div>
+          <div *ngIf="itemName.errors?.['minlength']">Item Name must be at least 2 characters long.</div>
+        </div>
+      </div>
+  
+      <!-- Quantity -->
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input
+          type="number"
+          id="quantity"
+          class="form-control"
+          [(ngModel)]="inventory.quantity"
+          name="quantity"
+          required
+          min="1"
+          #quantity="ngModel"
+          [ngClass]="{'is-invalid': quantity.invalid && (quantity.dirty || quantity.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)">
+          <div *ngIf="quantity.errors?.['required']">Quantity is required.</div>
+          <div *ngIf="quantity.errors?.['min']">Quantity must be at least 1.</div>
+        </div>
+      </div>
+  
+      <!-- Reorder Level -->
+      <div class="mb-3">
+        <label for="reorderLevel" class="form-label">Reorder Level</label>
+        <input
+          type="number"
+          id="reorderLevel"
+          class="form-control"
+          [(ngModel)]="inventory.reorderLevel"
+          name="reorderLevel"
+          required
+          min="1"
+          #reorderLevel="ngModel"
+          [ngClass]="{'is-invalid': reorderLevel.invalid && (reorderLevel.dirty || reorderLevel.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="reorderLevel.invalid && (reorderLevel.dirty || reorderLevel.touched)">
+          <div *ngIf="reorderLevel.errors?.['required']">Reorder Level is required.</div>
+          <div *ngIf="reorderLevel.errors?.['min']">Reorder Level must be at least 1.</div>
+        </div>
+      </div>
+  
+      <!-- Last Restocked Date -->
+      <div class="mb-3">
+        <label for="lastRestockedDate" class="form-label">Last Restocked Date</label>
+        <input
+          type="date"
+          id="lastRestockedDate"
+          class="form-control"
+          [(ngModel)]="inventory.lastRestockedDate"
+          name="lastRestockedDate"
+          required
+          #lastRestockedDate="ngModel"
+          [ngClass]="{'is-invalid': lastRestockedDate.invalid && (lastRestockedDate.dirty || lastRestockedDate.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="lastRestockedDate.invalid && (lastRestockedDate.dirty || lastRestockedDate.touched)">
+          <div *ngIf="lastRestockedDate.errors?.['required']">Last Restocked Date is required.</div>
+        </div>
+      </div>
+  
+      <!-- Supplier -->
+      <div class="mb-3">
+        <label for="supplier" class="form-label">Supplier</label>
+        <input
+          type="text"
+          id="supplier"
+          class="form-control"
+          [(ngModel)]="inventory.supplier"
+          name="supplier"
+          required
+          minlength="2"
+          #supplier="ngModel"
+          [ngClass]="{'is-invalid': supplier.invalid && (supplier.dirty || supplier.touched)}"
+        />
+        <div class="invalid-feedback" *ngIf="supplier.invalid && (supplier.dirty || supplier.touched)">
+          <div *ngIf="supplier.errors?.['required']">Supplier is required.</div>
+          <div *ngIf="supplier.errors?.['minlength']">Supplier name must be at least 2 characters long.</div>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="inventoryForm.invalid">Submit</button>
+    </form>
+  
+    <!-- Success Message -->
+    <div *ngIf="success" class="alert alert-success mt-4">
+      Successfully registered the inventory item!
+    </div>
+    <button  class="btn btn-primary mt-4 w-100" (click)="goBack()">Back</button>
+  </div>
+  

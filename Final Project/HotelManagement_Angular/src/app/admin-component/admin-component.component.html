@@ -1,0 +1,80 @@
+<!-- Admin Dashboard Page -->
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Home Link -->
+      <a class="navbar-brand" href="#">Admin Dashboard</a>
+  
+      <!-- Navbar Toggler for smaller screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+  
+        <!-- Logout Button on the Right -->
+        <ul class="navbar-nav">
+          <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class="nav-link logout" (click)="onLogout()">LogOut</a>
+          </li>
+        </ul>
+  
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Admin Page Content -->
+  <div class="admin-dashboard">
+    <!-- Overlay -->
+    <div class="overlay"></div>
+  
+    <!-- Container for the Content -->
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <h1 class="display-3 text-white mt-5">Welcome, Admin</h1>
+          <p class="lead text-white mb-5">Manage rooms, maintenance, and users with ease.</p>
+        </div>
+      </div>
+  
+      <div class="row">
+        <!-- Room Button -->
+        <div class="col-md-4 mb-4">
+          <button class="btn btn-primary btn-lg btn-block shadow-lg" (click)="onManageRooms()">Manage Rooms</button>
+        </div>
+  
+        <!-- Maintenance Button -->
+        <div class="col-md-4 mb-4">
+          <button class="btn btn-secondary btn-lg btn-block shadow-lg" (click)="onManageMaintenance()">Manage Maintenance</button>
+        </div>
+  
+        <!-- Generate Report Button -->
+        <div class="col-md-4 mb-4">
+          <button class="btn btn-success btn-lg btn-block shadow-lg" (click)="onGenerateReport()">Generate Report</button>
+        </div>
+
+       
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <button class="btn btn-warning btn-lg btn-block shadow-lg" (click)="onManageInventory()">Manage Inventory</button>
+        </div>
+        <!-- Add New User Button -->
+        <div class="col-md-6 mb-4">
+          <button class="btn btn-info btn-lg btn-block shadow-lg" (click)="onAddUser()">Manage Staff</button>
+        </div>
+  
+        <!-- Remove User Button -->
+        
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Home Link -->
+    <a class="navbar-brand" href="#">Staff Dashboard</a>
+
+    <!-- Navbar Toggler for smaller screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+
+      <!-- Logout Button on the Right -->
+      <ul class="navbar-nav">
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <a class="nav-link logout" (click)="onLogout()">LogOut</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Guest List</h2>
+  
+    <!-- Back Button -->
+    <div class="text-center mb-3">
+      <button class="btn btn-secondary" routerLink="/staff">Back</button>
+    </div>
+  
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <!-- Guest List Table -->
+    <div *ngIf="!loading && guestList.length > 0" class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Guest ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Preferences</th>
+            <th>Date Created</th>
+            <th>Actions</th> <!-- New Actions Column -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let guest of guestList">
+            <td>{{ guest.guestId }}</td>
+            <td>{{ guest.firstName }}</td>
+            <td>{{ guest.lastName }}</td>
+            <td>{{ guest.email }}</td>
+            <td>{{ guest.phoneNumber }}</td>
+            <td>{{ guest.address }}</td>
+            <td>{{ guest.preferences }}</td>
+            <td>{{ guest.dateCreated | date: 'short' }}</td>
+            <td>
+              <!-- Edit and Delete Buttons -->
+              <button class="btn btn-primary btn-sm me-2" (click)="editGuest(guest.guestId)">Edit</button>
+              <button class="btn btn-danger btn-sm ml-3" (click)="deleteGuest(guest.guestId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- No Guests Found -->
+    <div *ngIf="!loading && guestList.length === 0" class="alert alert-warning text-center">
+      No guests found.
+    </div>
+</div>

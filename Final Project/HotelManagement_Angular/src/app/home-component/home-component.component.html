@@ -1,0 +1,42 @@
+<div class="home-container">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Luxury Hotel</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      
+      </div>
+    </div>
+  </nav>
+
+  <!-- Background Video -->
+  <video autoplay muted loop id="background-video" tabindex="0">
+    <source src="/public/HotelHome.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Overlay Content -->
+  <div class="overlay">
+    <header class="home-header">
+      <h1>Welcome to Our Luxury Hotel</h1>
+      <p class="tagline">Experience the finest hospitality with us</p>
+    </header>
+  
+    <section class="home-buttons">
+      <!--<button class="btn btn-primary explore-btn" (click)="onExploreRooms()">Explore Rooms</button>-->
+      <button class="btn btn-primary login-btn" (click)="onLogin()">Login</button>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="home-footer text-center text-white py-3 mt-auto">
+    <div class="container">
+      <p class="mb-0">
+        &copy; 2024 Luxury Hotel. All rights reserved.
+      </p>
+    </div>
+  </footer>
+</div>

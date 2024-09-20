@@ -1,0 +1,49 @@
+<!-- HouseKeeping Component -->
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">HouseKeeping Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Home</a>
+          </li>
+         
+          <!-- Logout Button with Username Display -->
+          <li class="nav-item">
+            <a class="nav-link" (click)="onLogout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Background and Overlay -->
+  <div class="housekeeping-dashboard">
+    <div class="overlay"></div>
+  
+    
+    <!-- <div class="container">
+      <div class="row text-center">
+       
+        <div class="col-md-6 mb-3">
+          <button class="btn btn-primary btn-lg btn-block" (click)="onTaskAssigned()">Task Assigned</button>
+        </div>
+  
+        <div class="col-md-6 mb-3">
+          <button class="btn btn-secondary btn-lg btn-block" (click)="onTaskPending()">Task Pending</button>
+        </div>
+  
+      
+        <div class="col-md-4 mb-3">
+          <button class="btn btn-success btn-lg btn-block" (click)="onTaskUpdate()">Task Update</button>
+        </div> 
+      </div>
+    </div> -->
+  </div>
+  

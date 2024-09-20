@@ -1,0 +1,84 @@
+.login-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/public/login.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adds a dark overlay */
+}
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+.btn.login-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 18px;
+  border: none;
+}
+
+.btn.login-btn:hover {
+  background-color: #0056b3;
+}
+
+select.form-control {
+  select.form-control {
+    width: 100%;  /* Full width */
+    padding: 10px;  /* Adequate padding */
+    font-size: 16px;  /* Font size to fit the text */
+    border-radius: 5px;  /* Rounded corners */
+    border: 1px solid #ced4da;  /* Border styling */
+    height: auto;  /* Let height adjust automatically */
+    min-height: 40px;  /* Ensure minimum height for readability */
+    box-sizing: border-box;  /* Ensure padding doesn't shrink the element */
+    overflow: visible;  /* Ensure dropdown items are fully visible */
+  }
+}
+.home-btn {
+  width: 100%;
+  background-color: #28a745; /* Green background */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.home-btn:hover {
+  background-color: #218838; /* Darker green on hover */
+}

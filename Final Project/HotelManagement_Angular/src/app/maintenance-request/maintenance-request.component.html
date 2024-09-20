@@ -1,0 +1,67 @@
+<div class="container my-5">
+    <h2 class="text-center mb-4">Maintenance Request for Room {{ maintenanceData.RoomId }}</h2>
+  
+    <div *ngIf="successMessage" class="alert alert-success text-center" role="alert">
+        {{ successMessage }}
+      </div>
+    
+      <div *ngIf="errorMessage" class="alert alert-danger text-center" role="alert">
+        {{ errorMessage }}
+      </div>
+    <!-- Maintenance Request Form -->
+    <form (ngSubmit)="submitMaintenanceRequest()" #maintenanceForm="ngForm" novalidate>
+      
+      <!-- Assigned Maintenance Staff -->
+      <div class="mb-3">
+        <label for="staffId" class="form-label">Assigned HouseKeeping Staff</label>
+        <select
+          id="staffId"
+          class="form-control"
+          [(ngModel)]="maintenanceData.assignedMaintenanceStaffId"
+          name="staffId"
+          required
+          #staffId="ngModel"
+          [ngClass]="{'is-invalid': staffId.invalid && (staffId.dirty || staffId.touched)}"
+        >
+          <option value="" disabled>Select a staff member</option>
+          <option *ngFor="let staff of staffList" [value]="staff.userId">{{ staff.username }}</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="staffId.invalid && (staffId.dirty || staffId.touched)">
+          Please select a staff member.
+        </div>
+      </div>
+  
+      <!-- Issue Description -->
+      <div class="mb-3">
+        <label for="issueDescription" class="form-label">Issue Description</label>
+        <textarea
+          id="issueDescription"
+          class="form-control"
+          [(ngModel)]="maintenanceData.IssueDescription"
+          name="issueDescription"
+          required
+          #issueDescription="ngModel"
+          [ngClass]="{'is-invalid': issueDescription.invalid && (issueDescription.dirty || issueDescription.touched)}"
+        ></textarea>
+        <div class="invalid-feedback" *ngIf="issueDescription.invalid && (issueDescription.dirty || issueDescription.touched)">
+          Issue description is required.
+        </div>
+      </div>
+  
+      <!-- Maintenance Status -->
+      
+        
+  
+      <!-- Scheduled Date -->
+      
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="maintenanceForm.invalid">Submit Request</button>
+    </form>
+  
+    <!-- Back Button -->
+    <div class="mt-3 text-center">
+      <button routerLink="/roomlist" class="btn btn-secondary w-100">Back to Rooms</button>
+    </div>
+  </div>
+  

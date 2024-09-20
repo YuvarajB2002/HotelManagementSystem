@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Home Link -->
+    <a class="navbar-brand" href="#">Admin Dashboard</a>
+
+    <!-- Navbar Toggler for smaller screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+
+      <!-- Logout Button on the Right -->
+      <ul class="navbar-nav">
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <a class="nav-link logout" (click)="onLogout()">LogOut</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Maintenance Requests</h2>
+  
+    <!-- Back Button -->
+    <div class="mb-4">
+      <button class="btn btn-primary" routerLink="/admin">Back</button>
+    </div>
+  
+    <!-- Maintenance Request Table -->
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Room ID</th>
+          <th>Assigned HouseKeeping Staff Name</th>
+          <th>Issue Description</th>
+          <th>Maintenance Status</th>
+          <th>Request Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of maintenanceRequests">
+          <td>{{ request.roomId }}</td>
+          <td>{{ request.assignedMaintenanceStaffName }}</td>
+          <td>{{ request.issueDescription }}</td>
+          <td>{{ request.maintenanceStatus }}</td>
+          <td>{{ request.requestDate | date: 'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- No Data Message -->
+    <div *ngIf="maintenanceRequests.length === 0" class="text-center mt-4">
+      <p>No maintenance requests available.</p>
+    </div>
+  </div>
+  

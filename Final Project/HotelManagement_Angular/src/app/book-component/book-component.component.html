@@ -1,0 +1,133 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- Home Link -->
+    <a class="navbar-brand" href="#">Staff Dashboard</a>
+
+    <!-- Navbar Toggler for smaller screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+
+      <!-- Logout Button on the Right -->
+      <ul class="navbar-nav">
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <a class="nav-link logout" (click)="onLogout()">LogOut</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+    <!-- Card Wrapper -->
+    <div class="card shadow-lg p-4">
+      <div class="card-body">
+        <!-- Header -->
+        <h2 class="text-center mb-4 fw-bold text-primary">Register Guest Details</h2>
+        
+        <!-- Registration Form -->
+        <form #guestForm="ngForm" (ngSubmit)="registerGuest()" novalidate>
+          <!-- Guest Details -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" id="firstName" class="form-control" [(ngModel)]="guest.firstName" name="firstName" required #firstName="ngModel" placeholder="Enter first name">
+              <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+                First Name is required.
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" id="lastName" class="form-control" [(ngModel)]="guest.lastName" name="lastName" required #lastName="ngModel" placeholder="Enter last name">
+              <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">
+                Last Name is required.
+              </div>
+            </div>
+          </div>
+  
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" [(ngModel)]="guest.email" name="email" required email #email="ngModel" placeholder="Enter email address">
+              <div *ngIf="email.invalid && email.touched" class="text-danger">
+                Valid Email is required.
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input type="text" id="phoneNumber" class="form-control" [(ngModel)]="guest.phoneNumber" name="phoneNumber" required #phoneNumber="ngModel" pattern="^[0-9]{10}$" placeholder="Enter phone number">
+              <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger">
+                Valid Phone Number is required (10 digits).
+              </div>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea id="address" class="form-control" rows="3" [(ngModel)]="guest.address" name="address" required #address="ngModel" placeholder="Enter guest address"></textarea>
+            <div *ngIf="address.invalid && address.touched" class="text-danger">
+              Address is required.
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="preferences" class="form-label">Preferences</label>
+            <textarea id="preferences" class="form-control" rows="3" [(ngModel)]="guest.preferences" name="preferences" placeholder="Enter guest preferences"></textarea>
+          </div>
+  
+          <!-- Submit Button -->
+          
+          <button type="submit" class="btn btn-primary btn-lg w-100 mt-3" [disabled]="guestForm.invalid">Register Guest</button>
+        <button (click)="goBack()" class="btn btn-primary btn-lg w-100 mt-3">Back</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-5" *ngIf="showReservationForm">
+    <!-- Reservation Form -->
+    <div class="card shadow-lg p-4">
+      <div class="card-body">
+        <h2 class="text-center mb-4 fw-bold text-primary">Reservation Details</h2>
+  
+        <form #reservationForm="ngForm" (ngSubmit)="submitReservation()" novalidate>
+          <div class="row mb-3">
+            
+            
+  
+            <div class="col-md-6">
+              <label for="capacity" class="form-label">Capacity</label>
+              <input type="number" id="capacity" class="form-control" [(ngModel)]="reservation.capacity" name="capacity" required #capacity="ngModel">
+              <div *ngIf="capacity.invalid && capacity.touched" class="text-danger">
+                Capacity is required.
+              </div>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="reservationStatus" class="form-label">Reservation Status</label>
+            <select id="reservationStatus" class="form-control" [(ngModel)]="reservation.reservationStatus" name="reservationStatus" required>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Pending">Pending</option>
+            </select>
+          </div>
+  
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-lg w-100 mt-3" [disabled]="reservationForm.invalid">Submit Reservation</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
